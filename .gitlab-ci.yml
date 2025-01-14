@@ -1,0 +1,19 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t $USERNAME/getting-started:latest .
+    - docker push $USERNAME/getting-started:latest
+
+deploy:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Deployment stage (to be implemented)"
+
