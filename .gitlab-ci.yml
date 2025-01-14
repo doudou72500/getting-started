@@ -8,7 +8,7 @@ build:
   services:
     - docker:dind
   script:
-    - docker build -t "$DOCKER_USERNAME"/getting-started:latest .
+    - docker build -t $DOCKER_USERNAME/getting-started:latest .
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker push "$DOCKER_USERNAME"/getting-started:latest
 
