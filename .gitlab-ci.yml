@@ -8,12 +8,12 @@ build:
   services:
     - docker:dind
   script:
-    - docker build -t $USERNAME/getting-started:latest .
-    - docker push $USERNAME/getting-started:latest
+    - docker build -t komidocker05/getting-started:latest .
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push komidocker05/getting-started:latest
 
 deploy:
   stage: deploy
-  image: alpine:latest
   script:
-    - echo "Deployment stage (to be implemented)"
+    - echo "Deploy step (you can configure this later)"
 
