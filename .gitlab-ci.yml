@@ -10,6 +10,7 @@ build:
   variables:
     DOCKER_DRIVER: overlay2
   script:
+    - echo "usernane : '$USERNAME'"
     - docker build -t "$USERNAME/getting-started:latest" .
     - echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
     - docker push "$USERNAME/getting-started:latest"
