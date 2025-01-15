@@ -9,6 +9,8 @@ build:
   image: docker:latest
   services:
     - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay2
   script:
     - echo "Docker Username: $USERNAME"
     - docker build -t "$USERNAME/getting-started:latest" .
