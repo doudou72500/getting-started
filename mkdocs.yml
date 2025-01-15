@@ -37,7 +37,7 @@ plugins:
 # Customization
 extra:
   social:
-    - type: github-alt
+    - icon: "github"
       link: https://github.com/docker/getting-started
 
 # Extensions
