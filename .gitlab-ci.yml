@@ -1,6 +1,8 @@
 stages:
+  - .pre
   - build
   - deploy
+  - .post
 
 build:
   stage: build
@@ -8,21 +10,13 @@ build:
   services:
     - docker:dind
   script:
-    # Debugging: Print the Docker username to ensure it's passed correctly
     - echo "Docker Username: $USERNAME"
-
-    # Build the Docker image using the provided username
     - docker build -t "$USERNAME/getting-started:latest" .
-
-    # Log in to Docker Hub using the provided credentials
     - echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
-
-    # Push the Docker image to your Docker Hub repository
     - docker push "$USERNAME/getting-started:latest"
 
 deploy:
   stage: deploy
   script:
-    # Placeholder for deployment steps
     - echo "Deploy step (you can configure this later)"
 
