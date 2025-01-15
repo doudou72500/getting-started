@@ -1,8 +1,6 @@
 stages:
-  - .pre
   - build
   - deploy
-  - .post
 
 build:
   stage: build
