@@ -37,7 +37,7 @@ plugins:
 # Customization
 extra:
   social:
-    - icon: "github"
+    - icon: fontawesome/brands/github
       link: https://github.com/docker/getting-started
 
 # Extensions
