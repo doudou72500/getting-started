@@ -3,6 +3,8 @@ stages:
   - build
   - deploy
   - .post
+  - test
+  - security
 
 build:
   stage: build
@@ -21,5 +23,26 @@ deploy:
   stage: deploy
   script:
     - echo "Deploy step (you can configure this later)"
+
+# SAST
+include:
+  - template: Security/SAST.gitlab-ci.yml
+
+# Dependency Scanning
+include:
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+# DAST
+include:
+  - template: Security/DAST.gitlab-ci.yml
+
+# Container Scanning
+include:
+  - template: Security/Container-Scanning.gitlab-ci.yml
+
+# Infrastructure as Code (IaC) Scanning
+include:
+  - template: Security/IaC-Scanning.gitlab-ci.yml
+
 
 
