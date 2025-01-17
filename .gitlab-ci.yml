@@ -1,6 +1,10 @@
 stages:
+  - .pre
   - build
   - deploy
+  - .post
+  - test
+  - security
 
 include:
   - template: Security/SAST.gitlab-ci.yml
@@ -8,6 +12,16 @@ include:
   - template: Security/DAST.gitlab-ci.yml
   - template: Security/Container-Scanning.gitlab-ci.yml
   - template: Security/IaC-Scanning.gitlab-ci.yml
+
+sast:
+  stage: test
+  script:
+    - echo "Running SAST scan..."
+
+dependency_scanning:
+  stage: test
+  script:
+    - echo "Running Dependency Scanning..."
 
 build:
   stage: build
@@ -17,7 +31,7 @@ build:
   variables:
     DOCKER_DRIVER: overlay2
   script:
-    - echo "username '$USERNAME'"
+    - echo "username  '$USERNAME'"
     - docker build -t "$USERNAME/getting-started:latest" .
     - echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
     - docker push "$USERNAME/getting-started:latest"
